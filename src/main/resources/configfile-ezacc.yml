@@ -1,0 +1,344 @@
+#한글
+# 프로파일 추가 시 bootstrap.yml에도 추가되어야 함
+zookeeper: 
+  session:
+   timeout: 
+     ms: 3500
+
+---
+spring:
+  profiles: dev
+  websocket:
+    schedule: 50000000
+  session:
+    store-type: redis
+    timeout: 840000
+ #   timeout: 900
+  datasource:
+      firstdb:
+        jdbc-url: jdbc:log4jdbc:mariadb://demo.e-accounting.co.kr:3307/xe?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+        maximumPoolSize: 2
+        connection-timeout : 10000
+      seconddb:
+        jdbc-url: jdbc:log4jdbc:mariadb://demo.e-accounting.co.kr:3307/xe?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+        maximumPoolSize: 2
+        connection-timeout : 10000
+  redis:
+      host: localhost
+      port: 6379
+  kafka: 
+    bootstrap:
+       servers: ec-kafka:9092
+    use: true
+file:
+   upload-dir: c:/temp
+server:
+  port: 8087
+db_encrypt:
+  key: eacc_emart_key
+---
+spring:
+  profiles: devmart
+  websocket:
+    schedule: 50000000
+  session:
+    store-type: redis
+    timeout: 840000
+ #   timeout: 900
+  datasource:
+      firstdb:
+#        jdbc-url: jdbc:mariadb://emart-dev-nsap-eaccounting-rds.cifnxuinwbta.ap-northeast-2.rds.amazonaws.com:53112/eaccounting?allowMultiQueries=true
+        jdbc-url: jdbc:log4jdbc:mariadb://emart-dev-nsap-eaccounting-rds.cifnxuinwbta.ap-northeast-2.rds.amazonaws.com:53112/eaccounting?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+#        driver-class-name: org.mariadb.jdbc.Driver
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      seconddb:
+        jdbc-url: jdbc:mariadb://xe1.cvfvwnmmnvf1.ap-northeast-2.rds.amazonaws.com:3306/xe1?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        driver-class-name: org.mariadb.jdbc.Driver
+  redis:
+      host: localhost
+      port: 6379
+  kafka: 
+    bootstrap:
+       servers: ec-kafka:9092
+    use: true
+file:
+   upload-dir: c:/temp
+server:
+  port: 8087
+db_encrypt:
+  key: eacc_emart_key
+---
+spring:
+  profiles: kov
+  session:
+    store-type: redis
+    timeout: 84000      
+  datasource:
+      firstdb:
+        jdbc-url: jdbc:log4jdbc:oracle:thin:@192.168.8.151:1521/ENPRANI
+        username: DBMGR1
+        password: invigor
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      seconddb:
+        jdbc-url: jdbc:log4jdbc:sqlserver://192.168.8.150:1433;databaseName=SBO_ENP
+        username: sa
+        password: saroot
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  redis:
+      host: localhost
+      port: 6379
+file:
+   upload-dir: c:/temp
+server:
+  port: 8088
+---
+spring:
+  profiles: kev
+  session:
+    store-type: redis
+    timeout: 84000      
+  datasource:
+      firstdb:
+        jdbc-url: jdbc:log4jdbc:oracle:thin:@192.168.8.154:1521/ENPRANI
+        username: DBMGR1
+        password: invigor
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      seconddb:
+        jdbc-url: jdbc:log4jdbc:sqlserver://192.168.8.150:1433;databaseName=SBO_ENP
+        username: sa
+        password: saroot
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  redis:
+      host: localhost
+      port: 6379
+file:
+   upload-dir: c:/temp
+server:
+  port: 8088
+---
+spring:
+  profiles: krod
+  session:
+    store-type: redis
+    timeout: 84000 
+  datasource:
+      firstdb:
+        jdbc-url: jdbc:oracle:thin:@192.168.8.151:1521/ENPRANI
+        username: DBMGR1
+        password: invigor
+        driver-class-name: oracle.jdbc.OracleDriver
+      seconddb:
+        jdbc-url: jdbc:sqlserver://192.168.8.150:1433;databaseName=SBO_ENP
+        username: sa
+        password: saroot
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  redis:
+      host: 172.17.0.1
+      port: 6379
+file:
+   upload-dir: c:/temp
+server:
+  port: 8088  
+---
+spring:
+  profiles: devkafka
+  datasource:
+        url: jdbc:log4jdbc:mariadb://demo.e-accounting.co.kr:3307/xe?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)   
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)   
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  redis:
+    host: localhost
+    port: 6379
+  session:
+    store-type: redis
+    timeout: 2000000
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hyncho
+    password: jyybclvjjzrxzepq
+file:
+   upload-dir: c:/temp
+server:
+  port: 8089
+db_encrypt:
+  key: eacc_emart_key
+---
+spring:
+  profiles: erod
+  datasource:
+        url: jdbc:log4jdbc:mariadb://xe.cwe3sizdhhur.ap-northeast-2.rds.amazonaws.com:3306/XE?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)   
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)   
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy        
+  redis:
+    host: localhost
+    port: 6379
+  session:
+    store-type: redis
+    timeout: 3000000
+file:
+   upload-dir: c:/temp
+server:
+  port: 8087     
+---    
+spring:
+  profiles: drod
+  websocket:
+    schedule: 50000000
+  session:
+    store-type: redis
+    timeout: 9000
+  datasource:
+      firstdb:
+#        jdbc-url: jdbc:mariadb://demo.e-accounting.co.kr:3306/xe1?allowMultiQueries=true
+        jdbc-url: jdbc:log4jdbc:mariadb://demo.e-accounting.co.kr:3306/xe1?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+#        driver-class-name: org.mariadb.jdbc.Driver
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      seconddb: 
+        jdbc-url: jdbc:log4jdbc:mariadb://demo.e-accounting.co.kr:3306/xe1?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+  redis:
+      host: localhost
+      port: 6379
+  kafka: 
+    bootstrap:
+       servers: ec-kafka:9092
+    use: true
+file:
+   upload-dir: c:/temp
+server:
+  port: 8087  
+db_encrypt:
+  key: eacc_emart_key 
+---
+spring:
+  profiles: prod
+  websocket:
+    schedule: 50000
+  session:
+    store-type: redis
+    timeout: 4200
+#    timeout: 840000
+#    timeout: 900   
+#    timeout: 2000
+  datasource:
+      firstdb:
+        #jdbc-url: jdbc:mariadb://host.docker.internal:3306/xe1?allowMultiQueries=true
+        jdbc-url: jdbc:log4jdbc:mariadb://demo.e-accounting.co.kr:3306/xe1?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        #driver-class-name: org.mariadb.jdbc.Driver
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      seconddb:
+        jdbc-url: jdbc:mariadb://demo.e-accounting.co.kr:3306/xe1?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        driver-class-name: org.mariadb.jdbc.Driver
+  redis:
+        host: host.docker.internal
+        #host: redis-prod-headless
+        port: 6379
+  kafka: 
+    bootstrap:
+       servers: ec-kafka:9092
+    use: true
+file:
+   upload-dir: /data
+server:
+  port: 8087
+db_encrypt:
+  key: eacc_emart_key
+---
+spring:
+  profiles: prodaws
+  websocket:
+    schedule: 5000000
+  session:
+    store-type: redis
+    timeout: 840000
+#    timeout: 840000
+#    timeout: 900   
+#    timeout: 4200 1hours
+  datasource:
+      firstdb:
+#        jdbc-url: jdbc:mariadb://emart-dev-nsap-eaccounting-rds.cifnxuinwbta.ap-northeast-2.rds.amazonaws.com:53112/eaccounting?allowMultiQueries=true
+        jdbc-url: jdbc:log4jdbc:mariadb://emart-dev-nsap-eaccounting-rds.cifnxuinwbta.ap-northeast-2.rds.amazonaws.com:53112/eaccounting?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+#        driver-class-name: org.mariadb.jdbc.Driver
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      seconddb:
+        jdbc-url: jdbc:mariadb://xe1.cvfvwnmmnvf1.ap-northeast-2.rds.amazonaws.com:3306/xe1?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        driver-class-name: org.mariadb.jdbc.Driver
+  redis:
+        host: redis-prod-headless
+        port: 6379
+file:
+   upload-dir: /data
+server:
+  port: 8087
+db_encrypt:
+  key: eacc_emart_key
+---
+
+spring:
+   profiles: prodkafka
+   datasource:
+        url: jdbc:mariadb://host.docker.internal:3306/xe1?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)   
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)   
+        driver-class-name: org.mariadb.jdbc.Driver
+   redis:
+        host: host.docker.internal
+        port: 6379
+   session:
+        store-type: redis
+        timeout: 4200
+   mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hyncho
+    password: jyybclvjjzrxzepq
+file:
+   upload-dir: /data
+server:
+  port: 8089
+db_encrypt:
+  key: eacc_emart_key
+---
+spring:
+   profiles: arod
+   datasource:
+        url: jdbc:mariadb://demo.e-accounting.co.kr:3306/xe1?allowMultiQueries=true
+        username: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        password: ENC(Im07y0jhKPctYoktgFS/Eg==)
+        driver-class-name: org.mariadb.jdbc.Driver
+   redis:
+        host: ec-redis01-ro.r2bmam.ng.0001.apn2.cache.amazonaws.com
+        port: 6379
+   session:
+        store-type: redis
+        timeout: 3600
+file:
+   upload-dir: /data
+server:
+  port: 8087
+  
